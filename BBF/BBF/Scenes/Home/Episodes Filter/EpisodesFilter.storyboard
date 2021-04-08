@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Episodes Filter View Controller-->
+        <scene sceneID="Ip0-dB-I36">
+            <objects>
+                <viewController storyboardIdentifier="EpisodesFilterViewController" modalPresentationStyle="overFullScreen" id="bCn-k1-xAS" customClass="EpisodesFilterViewController" customModule="BBF" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lOR-69-R9R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7H-Wu-zS6" userLabel="Filter View">
+                                <rect key="frame" x="20" y="179" width="374" height="538"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwX-P3-hbd" userLabel="Text Fields View">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="161.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JxX-P7-MP8" userLabel="Text Fields Stack View">
+                                                <rect key="frame" x="10" y="10" width="354" height="136.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Season" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BNW-Bn-9sb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="354" height="39"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLR-Ex-xOI">
+                                                        <rect key="frame" x="0.0" y="49" width="354" height="38.5"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HyA-hC-nyV" userLabel="Start Date">
+                                                                <rect key="frame" x="0.0" y="0.0" width="354" height="38.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mO3-kn-Rmt">
+                                                        <rect key="frame" x="0.0" y="97.5" width="354" height="39"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SQ0-fc-rNU" userLabel="End Date">
+                                                                <rect key="frame" x="0.0" y="0.0" width="354" height="39"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="BNW-Bn-9sb" firstAttribute="height" secondItem="HyA-hC-nyV" secondAttribute="height" id="6oi-r8-wEd"/>
+                                                    <constraint firstItem="BNW-Bn-9sb" firstAttribute="height" secondItem="SQ0-fc-rNU" secondAttribute="height" id="N5d-TS-VFK"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstItem="JxX-P7-MP8" firstAttribute="leading" secondItem="SwX-P3-hbd" secondAttribute="leading" constant="10" id="0om-jW-c3E"/>
+                                            <constraint firstItem="JxX-P7-MP8" firstAttribute="top" secondItem="SwX-P3-hbd" secondAttribute="top" constant="10" id="f90-FL-lMa"/>
+                                            <constraint firstAttribute="bottom" secondItem="JxX-P7-MP8" secondAttribute="bottom" constant="15" id="wNW-Tn-uAs"/>
+                                            <constraint firstAttribute="trailing" secondItem="JxX-P7-MP8" secondAttribute="trailing" constant="10" id="wjl-Qv-FBM"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2G-Qz-Z2e">
+                                        <rect key="frame" x="0.0" y="498" width="374" height="40"/>
+                                        <color key="backgroundColor" red="0.37065416569999998" green="0.37095898389999998" blue="0.37070131299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="KFZ-a5-dCi"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.96469408270000001" green="0.96469980479999995" blue="0.96471446750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Apply"/>
+                                        <connections>
+                                            <action selector="applyButtonTapped:" destination="bCn-k1-xAS" eventType="touchUpInside" id="Fhy-rL-HwE"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="CMl-AJ-BmJ" userLabel="Table View Stack">
+                                        <rect key="frame" x="10" y="161.5" width="354" height="322.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osj-wV-Pgv" userLabel="Characters Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="fBy-GX-igl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-mQ-YNi">
+                                                <rect key="frame" x="0.0" y="22" width="354" height="300.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EpisodeFilterTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EpisodeFilterTableViewCell" id="R7D-xs-qsC" customClass="EpisodeFilterTableViewCell" customModule="BBF" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="354" height="43.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R7D-xs-qsC" id="ZOU-nL-c6O">
+                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SwX-P3-hbd" secondAttribute="trailing" id="15x-zg-WiW"/>
+                                    <constraint firstItem="SwX-P3-hbd" firstAttribute="height" secondItem="H7H-Wu-zS6" secondAttribute="height" multiplier="0.3" id="CSz-Bq-I45"/>
+                                    <constraint firstAttribute="trailing" secondItem="CMl-AJ-BmJ" secondAttribute="trailing" constant="10" id="JAy-wC-96T"/>
+                                    <constraint firstAttribute="bottom" secondItem="X2G-Qz-Z2e" secondAttribute="bottom" id="M8h-xn-QfX"/>
+                                    <constraint firstItem="CMl-AJ-BmJ" firstAttribute="centerX" secondItem="H7H-Wu-zS6" secondAttribute="centerX" id="QAE-Aq-pqE"/>
+                                    <constraint firstItem="CMl-AJ-BmJ" firstAttribute="height" secondItem="H7H-Wu-zS6" secondAttribute="height" multiplier="0.6" id="XZ9-Tb-u6u"/>
+                                    <constraint firstItem="CMl-AJ-BmJ" firstAttribute="top" secondItem="SwX-P3-hbd" secondAttribute="bottom" id="bQn-x5-qQM"/>
+                                    <constraint firstAttribute="trailing" secondItem="X2G-Qz-Z2e" secondAttribute="trailing" id="hqF-bH-Zfn"/>
+                                    <constraint firstItem="SwX-P3-hbd" firstAttribute="top" secondItem="H7H-Wu-zS6" secondAttribute="top" id="ksc-Js-HAc"/>
+                                    <constraint firstItem="SwX-P3-hbd" firstAttribute="leading" secondItem="H7H-Wu-zS6" secondAttribute="leading" id="r3o-Be-Gto"/>
+                                    <constraint firstItem="CMl-AJ-BmJ" firstAttribute="leading" secondItem="H7H-Wu-zS6" secondAttribute="leading" constant="10" id="xmX-2N-5N5"/>
+                                    <constraint firstItem="X2G-Qz-Z2e" firstAttribute="leading" secondItem="H7H-Wu-zS6" secondAttribute="leading" id="ys9-7I-LNc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SJ4-JG-LCI"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="H7H-Wu-zS6" firstAttribute="centerY" secondItem="lOR-69-R9R" secondAttribute="centerY" id="YYV-68-cmr"/>
+                            <constraint firstItem="H7H-Wu-zS6" firstAttribute="height" secondItem="lOR-69-R9R" secondAttribute="height" multiplier="0.6" id="gm2-Po-HmT"/>
+                            <constraint firstItem="SJ4-JG-LCI" firstAttribute="trailing" secondItem="H7H-Wu-zS6" secondAttribute="trailing" constant="20" id="k3g-an-Kwz"/>
+                            <constraint firstItem="H7H-Wu-zS6" firstAttribute="centerX" secondItem="lOR-69-R9R" secondAttribute="centerX" id="kJD-oo-ho4"/>
+                            <constraint firstItem="H7H-Wu-zS6" firstAttribute="leading" secondItem="SJ4-JG-LCI" secondAttribute="leading" constant="20" id="og8-ae-Isn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QBK-WA-w0Z"/>
+                    <connections>
+                        <outlet property="applyButton" destination="X2G-Qz-Z2e" id="aGW-Zq-3dF"/>
+                        <outlet property="endDateTextField" destination="SQ0-fc-rNU" id="KUj-ml-FGf"/>
+                        <outlet property="episodeFilterTableView" destination="fVT-mQ-YNi" id="93R-52-R0h"/>
+                        <outlet property="filterView" destination="H7H-Wu-zS6" id="1cO-hV-Dez"/>
+                        <outlet property="seasonTextField" destination="BNW-Bn-9sb" id="oKY-GB-wSz"/>
+                        <outlet property="startDateTextField" destination="HyA-hC-nyV" id="FHw-T0-33b"/>
+                        <outlet property="textFieldsView" destination="SwX-P3-hbd" id="Gg2-dE-qY8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecj-13-B0n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4788.4057971014499" y="-513.61607142857144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

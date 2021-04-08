@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Episodes View Controller-->
+        <scene sceneID="fRP-NE-xg1">
+            <objects>
+                <viewController storyboardIdentifier="EpisodesViewController" modalPresentationStyle="fullScreen" id="dMn-vJ-VH2" customClass="EpisodesViewController" customModule="BBF" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LPZ-lh-0ZN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flj-Q3-g2e" userLabel="Episodes Table View">
+                                <rect key="frame" x="0.0" y="94" width="390" height="716"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EpisodesTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EpisodesTableViewCell" id="Qyx-Qr-5pY" userLabel="Episode Table View Cell" customClass="EpisodesTableViewCell" customModule="BBF" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qyx-Qr-5pY" id="DgI-47-nvg">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntb-18-R7q" userLabel="Title Label">
+                                                    <rect key="frame" x="32" y="11.333333333333336" width="79" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ntb-18-R7q" firstAttribute="centerY" secondItem="DgI-47-nvg" secondAttribute="centerY" id="TKH-gj-hdK"/>
+                                                <constraint firstItem="ntb-18-R7q" firstAttribute="leading" secondItem="DgI-47-nvg" secondAttribute="leadingMargin" constant="12" id="o1o-CJ-hXG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="episodeTitleLabel" destination="ntb-18-R7q" id="LjZ-Ki-S0e"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IN5-6t-6FC" userLabel="Navigation View">
+                                <rect key="frame" x="0.0" y="44" width="390" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eM-GC-BsF" userLabel="Title Label">
+                                        <rect key="frame" x="160" y="14.666666666666664" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ei2-Zo-6u3" userLabel="Filter Button">
+                                        <rect key="frame" x="343" y="10" width="35" height="30"/>
+                                        <state key="normal" title="Filter"/>
+                                        <connections>
+                                            <action selector="filterButtonTapped:" destination="dMn-vJ-VH2" eventType="touchUpInside" id="77W-Uy-bal"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqV-5M-XDN" userLabel="Back Button">
+                                        <rect key="frame" x="12" y="10" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="dMn-vJ-VH2" eventType="touchUpInside" id="FDU-Bq-QoG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ei2-Zo-6u3" firstAttribute="centerY" secondItem="IN5-6t-6FC" secondAttribute="centerY" id="8h5-iR-Cvs"/>
+                                    <constraint firstItem="gqV-5M-XDN" firstAttribute="centerY" secondItem="IN5-6t-6FC" secondAttribute="centerY" id="OSt-ct-kGB"/>
+                                    <constraint firstItem="gqV-5M-XDN" firstAttribute="leading" secondItem="IN5-6t-6FC" secondAttribute="leading" constant="12" id="X6q-su-ogT"/>
+                                    <constraint firstAttribute="trailing" secondItem="ei2-Zo-6u3" secondAttribute="trailing" constant="12" id="bzo-yu-e9u"/>
+                                    <constraint firstItem="7eM-GC-BsF" firstAttribute="centerY" secondItem="IN5-6t-6FC" secondAttribute="centerY" id="cZp-ab-BAG"/>
+                                    <constraint firstItem="7eM-GC-BsF" firstAttribute="centerX" secondItem="IN5-6t-6FC" secondAttribute="centerX" id="ohG-Jm-oAk"/>
+                                    <constraint firstAttribute="height" constant="50" id="wjZ-YY-NZn"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="C7w-4l-q9w">
+                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xH8-xd-0uW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xH8-xd-0uW" firstAttribute="bottom" secondItem="flj-Q3-g2e" secondAttribute="bottom" id="62t-Cr-xxY"/>
+                            <constraint firstItem="C7w-4l-q9w" firstAttribute="centerY" secondItem="LPZ-lh-0ZN" secondAttribute="centerY" id="HAr-N8-08h"/>
+                            <constraint firstItem="IN5-6t-6FC" firstAttribute="leading" secondItem="xH8-xd-0uW" secondAttribute="leading" id="Hdn-FR-lQK"/>
+                            <constraint firstItem="C7w-4l-q9w" firstAttribute="centerX" secondItem="LPZ-lh-0ZN" secondAttribute="centerX" id="NDx-MI-9J0"/>
+                            <constraint firstItem="flj-Q3-g2e" firstAttribute="leading" secondItem="xH8-xd-0uW" secondAttribute="leading" id="Nf4-Pn-jTV"/>
+                            <constraint firstItem="flj-Q3-g2e" firstAttribute="centerX" secondItem="LPZ-lh-0ZN" secondAttribute="centerX" id="Xbu-O9-3ic"/>
+                            <constraint firstItem="IN5-6t-6FC" firstAttribute="top" secondItem="xH8-xd-0uW" secondAttribute="top" id="cZv-hl-dxQ"/>
+                            <constraint firstItem="xH8-xd-0uW" firstAttribute="trailing" secondItem="flj-Q3-g2e" secondAttribute="trailing" id="d5q-Lx-2E8"/>
+                            <constraint firstItem="flj-Q3-g2e" firstAttribute="top" secondItem="IN5-6t-6FC" secondAttribute="bottom" id="gel-yI-VQp"/>
+                            <constraint firstItem="IN5-6t-6FC" firstAttribute="centerX" secondItem="LPZ-lh-0ZN" secondAttribute="centerX" id="ia0-ff-ZZZ"/>
+                            <constraint firstItem="xH8-xd-0uW" firstAttribute="trailing" secondItem="IN5-6t-6FC" secondAttribute="trailing" id="yuo-ZE-hmz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="C7w-4l-q9w" id="3CA-dy-IZt"/>
+                        <outlet property="backButton" destination="ei2-Zo-6u3" id="YR3-9L-gic"/>
+                        <outlet property="episodesTableView" destination="flj-Q3-g2e" id="GoO-LO-ezV"/>
+                        <outlet property="filterButton" destination="gqV-5M-XDN" id="e50-Pa-g1h"/>
+                        <outlet property="navigationView" destination="IN5-6t-6FC" id="Teh-De-BN8"/>
+                        <outlet property="titleLabel" destination="7eM-GC-BsF" id="g9m-dN-6BO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSy-J7-apg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4111" y="-512"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
