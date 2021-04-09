@@ -36,9 +36,9 @@ final class HomeViewController: ViewController {
 
 extension HomeViewController {
     
-    fileprivate func configureViews() {
+    private func configureViews() {
         titleLabel.text = "Breaking Bad Fan"
-        usernameLabel.text = "Logged in username"
+        usernameLabel.text = AccountManager.loggedInAccount?.username
 
         episodesButton.styleButton(
             title: "Episodes",
@@ -46,13 +46,6 @@ extension HomeViewController {
             backgroundColor: .darkGray,
             borderColor: .gray
         )
-
-        episodesButton.roundCorners(
-            [.topLeft, .topRight],
-            cornerRadius: .rounded
-        )
-
-        episodesButton.layer.masksToBounds = true
 
         charactersButton.styleButton(
             title: "Characters",
@@ -66,11 +59,6 @@ extension HomeViewController {
             titleColor: .white,
             backgroundColor: .darkGray,
             borderColor: .gray
-        )
-
-        quotesButton.roundCorners(
-            [.bottomLeft, .bottomRight],
-            cornerRadius: .rounded
         )
     }
 }

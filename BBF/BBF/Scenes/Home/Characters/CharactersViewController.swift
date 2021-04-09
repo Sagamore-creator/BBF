@@ -24,16 +24,14 @@ final class CharactersViewController: ViewController {
     }
     
     private func loadCharacters() {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        activityIndicator.show()
 
         APIManager().getCharacters() { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(characters):
                     self?.characters = characters
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.isHidden = true
+                    self?.activityIndicator.hide()
                     self?.charactersTableView.reloadData()
                 case let .failure(error):
                     print(error.localizedDescription)

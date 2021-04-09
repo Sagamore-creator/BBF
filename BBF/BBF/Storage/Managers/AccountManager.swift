@@ -5,13 +5,13 @@ import Foundation
 
 struct AccountManager {
 
-    private enum AccountManagerError: Error {
+    enum ErrorMessage: Error {
         case missingValues
         case accountAlreadyExists
         case wrongPassword
         case accountNotFound
 
-        var errorDescription: String {
+        var description: String {
             switch self {
             case .missingValues:
                 return "Missing required values."
@@ -26,42 +26,67 @@ struct AccountManager {
     }
 
     static var loggedInAccount: Account?
+    private static var defaultsManager = UserDefaultsManager()
 }
 
-// MARK: - Main functionality
+// MARK: - Login and Register
 
 extension AccountManager {
 
-    static func registerAccount(username: String?, password: String?) throws {
+    static func registerAccount(
+        username: String?,
+        password: String?,
+        confirmPassword: String?
+    ) throws {
         guard
             let username = username,
             let password = password,
-            isNotEmptyCredentials(username: username, password: password)
+            let confirmPassword = confirmPassword,
+            isNotEmptyCredentials(
+                username: username,
+                password: password,
+                confirmPassword: confirmPassword
+            )
         else {
-            throw AccountManagerError.missingValues
+            throw ErrorMessage.missingValues
         }
 
         guard !isAccountTaken(with: username) else {
-            throw AccountManagerError.accountAlreadyExists
+            throw ErrorMessage.accountAlreadyExists
         }
 
         var account = Account(username: username, password: password)
-        UserDefaultsManager().saveAccount(&account)
+        defaultsManager.saveAccount(&account)
         loggedInAccount = account
-        UserDefaultsManager().saveLoggedInAccount(loggedInAccount)
+        defaultsManager.saveLoggedInAccount(loggedInAccount)
     }
 
-    static func loginAccount() {}
+    static func loginAccount(username: String?, password: String?) throws {
+        guard let accounts = defaultsManager.getAccounts() else {
+            throw AccountManager.ErrorMessage.accountNotFound
+        }
+
+        for account in accounts where account.username == username {
+            guard password == KeychainManager().getPassword(for: account.username) else {
+                throw AccountManager.ErrorMessage.wrongPassword
+            }
+        }
+    }
 }
 
 // MARK: - Validation
 
 extension AccountManager {
 
-    private static func isNotEmptyCredentials(username: String, password: String) -> Bool{
+    private static func isNotEmptyCredentials(
+        username: String,
+        password: String,
+        confirmPassword: String
+    ) -> Bool{
         guard
             username.isNotEmpty,
-            password.isNotEmpty
+            password.isNotEmpty,
+            confirmPassword.isNotEmpty
         else {
             return false
         }
@@ -69,7 +94,9 @@ extension AccountManager {
     }
 
     private static func isAccountTaken(with username: String) -> Bool {
-        let accounts = UserDefaultsManager().getAccounts()
+        guard let accounts = defaultsManager.getAccounts() else {
+            return false
+        }
         return accounts.contains { $0.username == username }
     }
 }

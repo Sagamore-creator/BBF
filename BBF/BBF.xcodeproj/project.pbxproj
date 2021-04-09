@@ -51,6 +51,8 @@
 		0A485C0325F41574009D5C1F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A485C0225F41574009D5C1F /* UserDefaultsManager.swift */; };
 		0A92CFDC25F52C6000CD769F /* EpisodeDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A92CFDB25F52C6000CD769F /* EpisodeDetailsViewController.storyboard */; };
 		0A92CFE025F55A1A00CD769F /* EpisodeDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A92CFDF25F55A1A00CD769F /* EpisodeDetailsTableViewCell.swift */; };
+		0A956911261F2C8A003CD40E /* UIActivityIndicator+Animating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A956910261F2C8A003CD40E /* UIActivityIndicator+Animating.swift */; };
+		0A956915261F3DD0003CD40E /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A956914261F3DCF003CD40E /* KeychainManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		0A485C0225F41574009D5C1F /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0A92CFDB25F52C6000CD769F /* EpisodeDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EpisodeDetailsViewController.storyboard; sourceTree = "<group>"; };
 		0A92CFDF25F55A1A00CD769F /* EpisodeDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		0A956910261F2C8A003CD40E /* UIActivityIndicator+Animating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicator+Animating.swift"; sourceTree = "<group>"; };
+		0A956914261F3DCF003CD40E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +316,7 @@
 				0A485BFF25F40DEF009D5C1F /* String+Utilities.swift */,
 				0A10FAB725EAB52E00E69C2E /* UIColor+Hex.swift */,
 				0A10FACC25EAD6B700E69C2E /* UIView+CornerRadius.swift */,
+				0A956910261F2C8A003CD40E /* UIActivityIndicator+Animating.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				0A485C0225F41574009D5C1F /* UserDefaultsManager.swift */,
+				0A956914261F3DCF003CD40E /* KeychainManager.swift */,
 				0A485BFB25F40731009D5C1F /* AccountManager.swift */,
 			);
 			path = Managers;
@@ -420,6 +426,7 @@
 				0A10FBCA25EE76F400E69C2E /* EpisodesTableViewCell.swift in Sources */,
 				0A10FA9625EAB36400E69C2E /* ViewController.swift in Sources */,
 				0A485C0025F40DEF009D5C1F /* String+Utilities.swift in Sources */,
+				0A956915261F3DD0003CD40E /* KeychainManager.swift in Sources */,
 				0A485BC725F1BCDA009D5C1F /* UIStoryboard+Instantiate.swift in Sources */,
 				0A10FB6625ED4CA800E69C2E /* APIManager.swift in Sources */,
 				0A10FB6925ED4CB100E69C2E /* APIEndpoint.swift in Sources */,
@@ -430,6 +437,7 @@
 				0A34A15425EFDA9C00428CE2 /* EpisodesViewController.swift in Sources */,
 				0A34A18125F126F000428CE2 /* CharactersFilterViewController.swift in Sources */,
 				0A10FA9225EAB36400E69C2E /* AppDelegate.swift in Sources */,
+				0A956911261F2C8A003CD40E /* UIActivityIndicator+Animating.swift in Sources */,
 				0A34A14C25EFC0EF00428CE2 /* CharactersTableViewCell.swift in Sources */,
 				0A485BFC25F40731009D5C1F /* AccountManager.swift in Sources */,
 				0A485BC225F1A044009D5C1F /* CharacterDetailsCell.swift in Sources */,

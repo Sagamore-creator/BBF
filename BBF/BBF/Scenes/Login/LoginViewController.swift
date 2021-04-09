@@ -28,12 +28,34 @@ final class LoginViewController: ViewController {
 
     // MARK: Submit Button Actions
 
-    @objc private func handleLogin() {
-        proceedToHomeView() //validation then login
+    @objc private func handleLogin() { //validation then login
+        do {
+            try AccountManager.loginAccount(
+                username: usernameTextField.text,
+                password: passwordTextField.text
+            )
+            proceedToHomeView()
+        } catch {
+            if let error = error as? AccountManager.ErrorMessage {
+                print(error)
+                // showFailureAlert(message: error.description) // Make Alert with message
+            }
+        }
     }
 
-    @objc private func handleRegister() {
-        proceedToHomeView() //validation, register then login
+    @objc private func handleRegister() { //validation, register then login
+        do {
+            try AccountManager.registerAccount(
+                username: usernameTextField.text,
+                password: passwordTextField.text,
+                confirmPassword: confirmPasswordTextField.text
+            )
+            proceedToHomeView()
+        } catch {
+            if let error = error as? AccountManager.ErrorMessage {
+                print(error) // Make Alert with message
+            }
+        }
     }
 }
 
@@ -44,9 +66,9 @@ extension LoginViewController {
     private func changeInterfaceAccordingTo(_ index: Int) {
         removeTargets(
             from: [submitButton,
-                 usernameTextField,
-                 passwordTextField,
-                 confirmPasswordTextField],
+                   usernameTextField,
+                   passwordTextField,
+                   confirmPasswordTextField],
             for: .allEvents
         )
 
@@ -67,10 +89,10 @@ extension LoginViewController {
             let password = passwordTextField.text,
             !password.isEmpty
         else {
-            disableSubmitButton()
+            submitButton.disableButton()
             return
         }
-        enableSubmitButton()
+        submitButton.enableButton()
     }
 
     @objc private func changeSubmitButtonOnRegisterSelected() {
@@ -82,20 +104,10 @@ extension LoginViewController {
             let confirmPassword = confirmPasswordTextField.text,
             !confirmPassword.isEmpty
         else {
-            disableSubmitButton()
+            submitButton.disableButton()
             return
         }
-        enableSubmitButton()
-    }
-
-    private func disableSubmitButton() {
-        submitButton.backgroundColor = color(.gray)
-        submitButton.isEnabled = false
-    }
-
-    private func enableSubmitButton() {
-        submitButton.backgroundColor = color(.darkGray)
-        submitButton.isEnabled = true
+        submitButton.enableButton()
     }
 
     private func changeInterfaceOnLoginSelected() {
@@ -175,15 +187,19 @@ extension LoginViewController {
 
 // MARK: - Helpers
 
-extension LoginViewController {
+private extension LoginViewController {
 
-    private func removeTargets(from UIControls: [UIControl], for event: UIControl.Event) {
+    func removeTargets(from UIControls: [UIControl], for event: UIControl.Event) {
         for UIControl in UIControls {
             UIControl.removeTarget(nil, action: nil, for: event)
         }
     }
 
-    private func addTargets(for textFields: [UITextField], with action: Selector, for event: UIControl.Event) {
+    func addTargets(
+        for textFields: [UITextField],
+        with action: Selector,
+        for event: UIControl.Event
+    ) {
         for textField in textFields {
             textField.addTarget(self, action: action, for: event)
         }

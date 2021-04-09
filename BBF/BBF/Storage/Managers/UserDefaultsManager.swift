@@ -11,7 +11,7 @@ struct UserDefaultsManager {
     }
 
     private let userDefaults: UserDefaults = .standard
-    private let keyChain = KeychainSwift()
+    private let keyChain = KeychainManager()
 }
 
 // MARK: - Account handling functionality
@@ -21,11 +21,15 @@ extension UserDefaultsManager {
     // MARK: Account
 
     func saveAccount(_ account: inout Account) {
-        var accounts = getAccounts()
-        savePassword(account.password, for: account.username)
+        var savedAccounts = [Account]()
+
+        if let accounts = getAccounts() {
+            savedAccounts = accounts
+        }
+        keyChain.savePassword(account.password, for: account.username)
         account.password = ""
-        accounts.append(account)
-        saveAccounts(accounts)
+        savedAccounts.append(account)
+        saveAccounts(savedAccounts)
     }
     
     func saveAccounts(_ accounts: [Account]) {
@@ -33,10 +37,8 @@ extension UserDefaultsManager {
         userDefaults.set(encodedAccounts,forKey: UserDefaultsManagerKey.accounts)
     }
 
-    func getAccounts() -> [Account] {
-        guard
-            let encodedAccounts = userDefaults.object(forKey: UserDefaultsManagerKey.accounts) as? Data
-        else {
+    func getAccounts() -> [Account]? {
+        guard let encodedAccounts = userDefaults.object(forKey: UserDefaultsManagerKey.accounts) as? Data else {
             return []
         }
         return try! JSONDecoder().decode([Account].self, from: encodedAccounts)
@@ -50,21 +52,11 @@ extension UserDefaultsManager {
     }
 
     func getLoggedInAccount() -> Account? {
-        guard
-            let encodedLoggedInAccount = userDefaults.object(forKey: UserDefaultsManagerKey.loggedInAccount) as? Data
-        else {
+        let loggedInAccount = UserDefaultsManagerKey.loggedInAccount
+
+        guard let encodedLoggedInAccount = userDefaults.object(forKey: loggedInAccount) as? Data else {
             return nil
         }
         return try? JSONDecoder().decode(Account.self, from: encodedLoggedInAccount)
-    }
-
-    // MARK: Password
-
-    func savePassword(_ password: String, for username: String) {
-        keyChain.set(password, forKey: username)
-    }
-
-    func getPassword(for username: String) -> String? {
-        keyChain.get(username)
     }
 }

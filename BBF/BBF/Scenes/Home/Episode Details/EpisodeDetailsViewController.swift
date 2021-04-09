@@ -67,13 +67,13 @@ private extension EpisodeDetailsViewController {
         )
 
         closeButton.styleButton(
-            title: "x",
+            title: "X",
             titleColor: .darkGray,
             backgroundColor: .white
         )
 
         closeButton.roundCorners(
-            [.topRight, .bottomLeft],
+            [.allCorners],
             cornerRadius: .rounded
         )
     }

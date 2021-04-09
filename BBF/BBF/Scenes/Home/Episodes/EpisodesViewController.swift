@@ -24,16 +24,14 @@ final class EpisodesViewController: ViewController {
     }
     
     private func loadEpisodes() {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        activityIndicator.show()
         
         APIManager().getEpisodes() { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(episodes):
                     self?.fetchEpisodes(from: episodes)
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.isHidden = true
+                    self?.activityIndicator.hide()
                 case let .failure(error):
                     print(error.localizedDescription)
                 }

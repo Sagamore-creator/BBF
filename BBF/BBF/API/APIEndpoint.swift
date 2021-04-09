@@ -40,7 +40,7 @@ private extension APIEndpoint {
         case episodes = "/api/episodes"
         case characters = "/api/characters"
         case characterQuote = "/api/quote"
-        case randomQuote = "quote/random"
+        case randomQuote = "/api/quote/random"
     }
 
     enum QueryKey: String {

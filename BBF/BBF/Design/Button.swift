@@ -25,4 +25,14 @@ extension UIButton {
             titleLabel.textAlignment = .center
         }
     }
+
+    func disableButton() {
+        self.backgroundColor = color(.gray)
+        self.isEnabled = false
+    }
+
+    func enableButton() {
+        self.backgroundColor = color(.darkGray)
+        self.isEnabled = true
+    }
 }
