@@ -28,7 +28,7 @@ final class LoginViewController: ViewController {
 
     // MARK: Submit Button Actions
 
-    @objc private func handleLogin() { //validation then login
+    @objc private func handleLogin() {
         do {
             try AccountManager.loginAccount(
                 username: usernameTextField.text,
@@ -37,13 +37,12 @@ final class LoginViewController: ViewController {
             proceedToHomeView()
         } catch {
             if let error = error as? AccountManager.ErrorMessage {
-                print(error)
-                // showFailureAlert(message: error.description) // Make Alert with message
+                print(error.description) // showAlert(message: error.description)
             }
         }
     }
 
-    @objc private func handleRegister() { //validation, register then login
+    @objc private func handleRegister() {
         do {
             try AccountManager.registerAccount(
                 username: usernameTextField.text,
@@ -53,7 +52,7 @@ final class LoginViewController: ViewController {
             proceedToHomeView()
         } catch {
             if let error = error as? AccountManager.ErrorMessage {
-                print(error) // Make Alert with message
+                print(error.description) // Make Alert with message
             }
         }
     }

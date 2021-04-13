@@ -11,7 +11,7 @@ struct UserDefaultsManager {
     }
 
     private let userDefaults: UserDefaults = .standard
-    private let keyChain = KeychainManager()
+    let keyChain = KeychainManager()
 }
 
 // MARK: - Account handling functionality
