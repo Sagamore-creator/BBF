@@ -68,6 +68,10 @@ extension AccountManager {
                 throw ErrorMessage.missingValues
             }
 
+            guard !ifAccountExists(with: username) else {
+                throw ErrorMessage.accountAlreadyExists
+            }
+
             guard checkUsernameSyntax(name: username) else {
                 throw ErrorMessage.wrongUsernameSyntax
             }
@@ -79,22 +83,25 @@ extension AccountManager {
             guard checkPasswordMatching(password: password, confirmPassword: confirmPassword) else {
                 throw ErrorMessage.passwordsDontMatch
             }
-
-            guard !ifAccountExists(with: username) else {
-                throw ErrorMessage.accountAlreadyExists
-            }
         }
 
         func login(username: String, password: String) throws {
+            guard username.isNotEmpty, password.isNotEmpty else {
+                throw ErrorMessage.missingValues
+            }
+
             guard let accounts = defaultsManager.getAccounts() else {
                 throw ErrorMessage.accountNotFound
             }
-
             for account in accounts where account.username == username {
                 guard password == defaultsManager.keyChain.getPassword(for: account.username) else {
                     throw ErrorMessage.wrongPassword
                 }
+                loggedInAccount = account
+                defaultsManager.saveLoggedInAccount(account)
+                return
             }
+            throw ErrorMessage.accountNotFound
         }
 
         // MARK: Private methods
