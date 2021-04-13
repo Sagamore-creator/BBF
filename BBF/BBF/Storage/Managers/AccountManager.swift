@@ -6,8 +6,9 @@ import Foundation
 struct AccountManager {
 
     private static var validate = Validate()
-    static var loggedInAccount: Account?
+    
     static var defaultsManager = UserDefaultsManager()
+    static var loggedInAccount: Account? = defaultsManager.getLoggedInAccount()
 }
 
 // MARK: - Login and Register

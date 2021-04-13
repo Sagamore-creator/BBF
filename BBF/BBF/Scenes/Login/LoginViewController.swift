@@ -20,6 +20,11 @@ final class LoginViewController: ViewController {
         changeInterfaceAccordingTo(loginSegmentedControl.selectedSegmentIndex)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        signIn()
+    }
+
     // MARK: - Actions
 
     @IBAction private func loginSegmentedControlIndexChanged(_ sender: UISegmentedControl) {
@@ -52,7 +57,7 @@ final class LoginViewController: ViewController {
             proceedToHomeView()
         } catch {
             if let error = error as? AccountManager.ErrorMessage {
-                print(error.description) // Make Alert with message
+                print(error.description) // showAlert(message: error.description)
             }
         }
     }
@@ -60,9 +65,9 @@ final class LoginViewController: ViewController {
 
 // MARK: - Setup Views
 
-extension LoginViewController {
+private extension LoginViewController {
 
-    private func changeInterfaceAccordingTo(_ index: Int) {
+    func changeInterfaceAccordingTo(_ index: Int) {
         removeTargets(
             from: [submitButton,
                    usernameTextField,
@@ -73,20 +78,20 @@ extension LoginViewController {
 
         switch index {
         case 0:
-            changeInterfaceOnLoginSelected()
+            onLogin()
         case 1:
-            changeInterfaceOnRegisterSelected()
+            onRegister()
         default:
             break
         }
     }
 
-    @objc private func changeSubmitButtonOnLoginSelected() {
+    @objc func buttonOnLogin() {
         guard
             let username = usernameTextField.text,
-            !username.isEmpty,
+            username.isNotEmpty,
             let password = passwordTextField.text,
-            !password.isEmpty
+            password.isNotEmpty
         else {
             submitButton.disableButton()
             return
@@ -94,14 +99,14 @@ extension LoginViewController {
         submitButton.enableButton()
     }
 
-    @objc private func changeSubmitButtonOnRegisterSelected() {
+    @objc func buttonOnRegister() {
         guard
             let username = usernameTextField.text,
-            !username.isEmpty,
+            username.isNotEmpty,
             let password = passwordTextField.text,
-            !password.isEmpty,
+            password.isNotEmpty,
             let confirmPassword = confirmPasswordTextField.text,
-            !confirmPassword.isEmpty
+            confirmPassword.isNotEmpty
         else {
             submitButton.disableButton()
             return
@@ -109,7 +114,7 @@ extension LoginViewController {
         submitButton.enableButton()
     }
 
-    private func changeInterfaceOnLoginSelected() {
+    func onLogin() {
         confirmPasswordTextField.isHidden = true
         confirmPasswordTextField.text = nil
 
@@ -128,12 +133,12 @@ extension LoginViewController {
 
         addTargets(
             for: [usernameTextField, passwordTextField],
-            with: #selector(changeSubmitButtonOnLoginSelected),
+            with: #selector(buttonOnLogin),
             for: .editingChanged
         )
     }
 
-    private func changeInterfaceOnRegisterSelected() {
+    func onRegister() {
         confirmPasswordTextField.isHidden = false
 
         submitButton.styleButton(
@@ -153,19 +158,19 @@ extension LoginViewController {
             for: [usernameTextField,
                   passwordTextField,
                   confirmPasswordTextField],
-            with: #selector(changeSubmitButtonOnRegisterSelected),
+            with: #selector(buttonOnRegister),
             for: .editingChanged
         )
     }
 
-    private func configureViews() {
-        view.backgroundColor = color(.white)
+    func configureViews() {
+        view.backgroundColor = color(.lightGray)
         titleLabel.textColor = color(.darkGray)
-        titleLogoView.backgroundColor = color(.white)
+        titleLogoView.backgroundColor = color(.lightGray)
         loginView.backgroundColor = color(.lightGray)
         loginView.roundCorners([.allCorners])
         loginSegmentedControl.backgroundColor = color(.gray)
-        loginSegmentedControl.selectedSegmentTintColor = color(.darkGray)
+        loginSegmentedControl.selectedSegmentTintColor = color(.green)
 
         loginSegmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: color(.lightGray)!],
@@ -178,9 +183,16 @@ extension LoginViewController {
         )
 
         submitButton.roundCorners(
-            [.bottomLeft, .bottomRight],
+            [.allCorners],
             cornerRadius: .rounded
         )
+    }
+
+    func signIn() {
+        let loggedInAccount = AccountManager.defaultsManager.getLoggedInAccount()
+        if loggedInAccount != nil {
+            proceedToHomeView()
+        }
     }
 }
 

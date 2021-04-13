@@ -20,14 +20,17 @@ final class HomeViewController: ViewController {
     @IBAction private func episodesButtonTapped(_ sender: Any) {
         proceedToEpisodesView()
     }
+    
     @IBAction private func charactersButtonTapped(_ sender: Any) {
         proceedToCharactersView()
     }
+
     @IBAction private func quotesButtonTapped(_ sender: Any) {
         //        proceedToQuotesView()
     }
 
     @IBAction private func logoutButtonTapped(_ sender: Any) {
+        AccountManager.defaultsManager.removeLoggedInAccount()
         dismiss(animated: true)
     }
 }
@@ -37,9 +40,6 @@ final class HomeViewController: ViewController {
 extension HomeViewController {
     
     private func configureViews() {
-        titleLabel.text = "Breaking Bad Fan"
-        usernameLabel.text = AccountManager.loggedInAccount?.username
-
         episodesButton.styleButton(
             title: "Episodes",
             titleColor: .white,
@@ -60,5 +60,11 @@ extension HomeViewController {
             backgroundColor: .darkGray,
             borderColor: .gray
         )
+
+        titleLabel.text = "Breaking Bad Fan"
+
+        if let loggedInAccount = AccountManager.loggedInAccount?.username {
+            usernameLabel.text = loggedInAccount
+        }
     }
 }

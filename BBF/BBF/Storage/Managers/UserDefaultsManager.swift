@@ -59,4 +59,9 @@ extension UserDefaultsManager {
         }
         return try? JSONDecoder().decode(Account.self, from: encodedLoggedInAccount)
     }
+
+    func removeLoggedInAccount() {
+        let loggedInAccount = UserDefaultsManagerKey.loggedInAccount
+        userDefaults.removeObject(forKey: loggedInAccount)
+    }
 }
