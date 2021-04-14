@@ -2,6 +2,7 @@
 //
 
 import Foundation
+import KeychainSwift
 
 struct KeychainManager {
 
