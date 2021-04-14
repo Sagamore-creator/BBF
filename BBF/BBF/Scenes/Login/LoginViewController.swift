@@ -189,8 +189,7 @@ private extension LoginViewController {
     }
 
     func signIn() {
-        let loggedInAccount = AccountManager.defaultsManager.getLoggedInAccount()
-        if loggedInAccount != nil {
+        if AccountManager.loggedInAccount != nil {
             proceedToHomeView()
         }
     }

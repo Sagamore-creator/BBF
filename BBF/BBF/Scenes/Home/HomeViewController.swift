@@ -30,6 +30,7 @@ final class HomeViewController: ViewController {
     }
 
     @IBAction private func logoutButtonTapped(_ sender: Any) {
+        AccountManager.loggedInAccount = nil
         AccountManager.defaultsManager.removeLoggedInAccount()
         dismiss(animated: true)
     }
