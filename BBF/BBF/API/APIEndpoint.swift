@@ -49,7 +49,7 @@ private extension APIEndpoint {
         case author
     }
 
-    var baseURL: String {
+    private var baseURL: String {
         "https://www.breakingbadapi.com"
     }
 
