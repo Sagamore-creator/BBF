@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct Character: Decodable {
+struct CharacterResponse: Decodable {
     let characterId: Int
     let name: String
     let birthday: String

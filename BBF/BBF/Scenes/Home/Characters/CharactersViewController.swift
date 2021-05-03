@@ -2,10 +2,12 @@
 //
 
 import UIKit
+import CoreData
 
 final class CharactersViewController: ViewController {
 
-    private var characters = [Character]()
+    private var characters: [Character] = []
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 
     @IBOutlet private weak var navigationView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -16,21 +18,25 @@ final class CharactersViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        charactersTableView.delegate = self
-        charactersTableView.dataSource = self
         loadCharacters()
         configureViews()
+
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchCharacters()
     }
     
-    private func loadCharacters() {
+    private func fetchCharacters() {
         activityIndicator.show()
 
         APIManager().getCharacters() { result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case let .success(characters):
-                    self?.characters = characters
+                    self?.populateDatabase(with: characters)
                     self?.activityIndicator.hide()
                     self?.charactersTableView.reloadData()
                 case let .failure(error):
@@ -64,6 +70,50 @@ private extension CharactersViewController {
 
     func configureViews() {
         navigationView.backgroundColor = color(.white)
+        charactersTableView.delegate = self
+        charactersTableView.dataSource = self
+    }
+}
+
+// MARK: - Core Data Model manipulation methods
+
+private extension CharactersViewController {
+
+    func saveCharacter() {
+        do {
+            try context?.save()
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+    }
+
+    func loadCharacters() {
+        guard let context = context else { return }
+
+        let request: NSFetchRequest<Character> = Character.fetchRequest()
+
+        do {
+            characters = try context.fetch(request)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+        charactersTableView.reloadData()
+    }
+
+    func populateDatabase(with characters: [CharacterResponse]) {
+        guard let context = context else { return }
+
+        for character in characters {
+            let newCharacter = Character(context: context)
+            newCharacter.characterId = Int16(character.characterId)
+            newCharacter.name = character.name
+            newCharacter.birthday = character.birthday
+            newCharacter.nickname = character.nickname
+            newCharacter.status = character.status
+
+            self.characters.append(newCharacter)
+            self.saveCharacter()
+        }
     }
 }
 
@@ -86,12 +136,14 @@ extension CharactersViewController: UITableViewDataSource {
 
         let character = characters[indexPath.row]
         
-        guard let characterCell = cell as? CharactersTableViewCell else {
+        guard
+            let characterCell = cell as? CharactersTableViewCell,
+            let characterName = character.name
+        else {
             return cell
         }
-        
-        characterCell.configureCell(characterName: character.name)
-        
+        characterCell.configureCell(with: characterName)
+
         return characterCell
     }
 }

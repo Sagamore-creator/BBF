@@ -9,14 +9,14 @@ struct APIManager {}
 
 extension APIManager {
 
-    func getEpisodes(_ completion: @escaping (Result<[Episode], APIError>) -> Void) {
+    func getEpisodes(_ completion: @escaping (Result<[EpisodeResponse], APIError>) -> Void) {
         performRequest(
             url: APIEndpoint.episodes(from: .breakingBad).url,
             completion: { result in
                 switch result {
                 case let .success(data):
                     do {
-                        let episodes = try JSONDecoder().decode([Episode].self, from: data)
+                        let episodes = try JSONDecoder().decode([EpisodeResponse].self, from: data)
                         completion(.success(episodes))
                     } catch {
                         completion(.failure(.parsingFailed))
@@ -28,14 +28,14 @@ extension APIManager {
         )
     }
 
-    func getCharacters(_ completion: @escaping (Result<[Character], APIError>) -> Void) {
+    func getCharacters(_ completion: @escaping (Result<[CharacterResponse], APIError>) -> Void) {
         performRequest(
             url: APIEndpoint.characters(from: .breakingBad).url,
             completion: { result in
                 switch result {
                 case let .success(data):
                     do {
-                        let characters = try JSONDecoder().decode([Character].self, from: data)
+                        let characters = try JSONDecoder().decode([CharacterResponse].self, from: data)
                         completion(.success(characters))
                     } catch {
                         completion(.failure(.parsingFailed))

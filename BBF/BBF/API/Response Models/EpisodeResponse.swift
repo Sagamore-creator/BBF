@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct Episode: Decodable {
+struct EpisodeResponse: Decodable {
     let episodeId: Int
     let title: String
     let season: String

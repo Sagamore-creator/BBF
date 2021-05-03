@@ -7,7 +7,7 @@ final class CharactersTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var characterNameLabel: UILabel!
 
-    func configureCell(characterName: String) {
+    func configureCell(with characterName: String) {
         characterNameLabel.text = characterName
     }
 }

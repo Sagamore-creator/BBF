@@ -17,7 +17,7 @@ final class EpisodeDetailsViewController: UIViewController, Storyboarded {
     @IBOutlet private weak var airDateLabel: UILabel!
     @IBOutlet private weak var charactersListTableView: UITableView!
 
-    var episode: Episode?
+    var episode: EpisodeResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +102,7 @@ extension EpisodeDetailsViewController: UITableViewDataSource {
             return cell
         }
 
-        characterCell.configureCell(characterName: character)
+        characterCell.configureCell(with: character)
 
         return characterCell
     }

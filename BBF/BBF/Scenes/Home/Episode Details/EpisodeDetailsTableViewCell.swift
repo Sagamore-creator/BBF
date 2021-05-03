@@ -7,7 +7,7 @@ final class EpisodeDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var nameLabel: UILabel!
 
-    func configureCell(characterName: String) {
+    func configureCell(with characterName: String) {
         nameLabel.text = characterName
     }
 }

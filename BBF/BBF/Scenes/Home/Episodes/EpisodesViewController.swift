@@ -2,10 +2,19 @@
 //
 
 import UIKit
+import CoreData
+
+struct EpisodesSection {
+    let season: String
+    let episodes: [EpisodeResponse]
+}
 
 final class EpisodesViewController: ViewController {
 
+    private var episodes: [Episode] = []
+
     private var sections = [EpisodesSection]()
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
     @IBOutlet private weak var navigationView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -39,7 +48,7 @@ final class EpisodesViewController: ViewController {
         }
     }
     
-    private func fetchEpisodes(from episodes: [Episode]) {
+    private func fetchEpisodes(from episodes: [EpisodeResponse]) {
         let episodes = Dictionary(
             grouping: episodes,
             by: { $0.season }
@@ -56,7 +65,7 @@ final class EpisodesViewController: ViewController {
         episodesTableView.reloadData()
     }
 
-    private func loadEpisodeDetails(with episode: Episode) {
+    private func loadEpisodeDetails(with episode: EpisodeResponse) {
         let episodeDetailsVC = EpisodeDetailsViewController.instantiate()
         episodeDetailsVC.episode = episode
         episodeDetailsVC.isModalInPresentation = true
